@@ -17,7 +17,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <conio.h> // cls()
+#include <conio.h> // cls(), _getch()
 #include <chrono>
 #include <thread>
 #include <stdlib.h>
@@ -242,7 +242,7 @@ void class_Password_functions::password_instructions(void)
 {
     system("cls");
     system("color a"); // Green Text
-    cout << endl << "::::::CPP Program to demonstrate password Encrypting.:::::: ";
+    cout << endl << "::::::CPP Program to demonstrate password Encrypting/Decrypting text-console animation.:::::: ";
     cout << endl << "---------------------------------------------------------------";
     cout << endl << ".:: Criteria for strong password is as follows : ";
     cout << endl << ".:: At least 8 characters-the more characters, the better.  ";
