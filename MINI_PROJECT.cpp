@@ -8,16 +8,11 @@
  * ***********************************************************************/
 
 // As we can see there is no notepad is open in the bottom section of the window
-#ifdef _WIN32
 #include <windows.h> // sleep() cls() system()
-#else
-#include <unistd.h> // Sleep() clear()
-#endif
-
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <conio.h> // cls(), _getch()
+#include <conio.h> // getch()
 #include <chrono>
 #include <thread>
 #include <stdlib.h>
@@ -242,7 +237,7 @@ void class_Password_functions::password_instructions(void)
 {
     system("cls");
     system("color a"); // Green Text
-    cout << endl << "::::::CPP Program to demonstrate password Encrypting/Decrypting text-console animation.:::::: ";
+    cout << endl << "::::::CPP Program to demonstrate password Encrypting.:::::: ";
     cout << endl << "---------------------------------------------------------------";
     cout << endl << ".:: Criteria for strong password is as follows : ";
     cout << endl << ".:: At least 8 characters-the more characters, the better.  ";
@@ -250,13 +245,13 @@ void class_Password_functions::password_instructions(void)
     cout << endl << ".:: A mixture of letters and numbers.";
     cout << endl << ".:: Inclusion of at least one special character, e.g., ! @ # ? ]";
     cout << endl << ".:: Press any key to continue . . . ";
-    _getch();
+    getch();
 }
 void class_Password_functions::eraseLine(string line)
 {
     size = line.size() - 1;
     cout << line;
-    _getch(); // Press any key . . .
+    getch(); // Press any key . . .
     while (size > -1)
     {
         sleep_for(microseconds(10000));
