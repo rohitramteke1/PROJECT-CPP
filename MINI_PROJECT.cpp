@@ -8,11 +8,16 @@
  * ***********************************************************************/
 
 // As we can see there is no notepad is open in the bottom section of the window
+#ifdef _WIN32
 #include <windows.h> // sleep() cls() system()
+#else
+#include <unistd.h> // Sleep() clear()
+#endif
+
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <conio.h> // getch()
+#include <conio.h> // cls()
 #include <chrono>
 #include <thread>
 #include <stdlib.h>
@@ -60,19 +65,19 @@ class class_Password_functions : protected Password // Single level Inheritance
     public:
         string password();                                        // Encryption
         void password_instructions(void);                         // Password Instructions
-        void eraseLine(string line);                              // for erasing the line
-        void batteryStatus();                                     // batteryStatus
-        void loadingData();                                       // loadingStatus
+        void erase_line(string line);                              // for erasing the line
+        void battery_status();                                     // battery_status
+        void loading_data();                                       // loadingStatus
         void hacker_text_animation();                             // hacker_text_animation effect
         void text_appearing_effect(string s);                     // password_text_effect
-        void encryptData();                                       // encrypt data Status
-        void decryptData();                                       // decrypt data Status
+        void encrypt_data();                                       // encrypt data Status
+        void decrypt_data();                                       // decrypt data Status
         void generate_password(string check_password, int n);     // GeneratePassword
         string suggester(int l, int u, int d, int s, string str); // password Suggestor
         string add_more_char(string str, int need);               // add extra characters in our password if it's small
 };
 
-void class_Password_functions::loadingData()
+void class_Password_functions::loading_data()
 {
     system("cls");
     system("color a");
@@ -104,7 +109,7 @@ void class_Password_functions::loadingData()
     }
 }
 
-void class_Password_functions::decryptData()
+void class_Password_functions::decrypt_data()
 {
     system("color a");
     loop_iter = 10; // 10 Iteration Count
@@ -137,7 +142,7 @@ void class_Password_functions::decryptData()
     cout << "Successfully decrypted." << endl;
 }
 
-void class_Password_functions::encryptData()
+void class_Password_functions::encrypt_data()
 {
     system("color e");
     int loop_iter = 10; // 10 Iteration Count
@@ -209,7 +214,7 @@ void class_Password_functions::text_appearing_effect(string s)
     }
 }
 
-void class_Password_functions::batteryStatus()
+void class_Password_functions::battery_status()
 {
     system("color e");
 
@@ -245,13 +250,13 @@ void class_Password_functions::password_instructions(void)
     cout << endl << ".:: A mixture of letters and numbers.";
     cout << endl << ".:: Inclusion of at least one special character, e.g., ! @ # ? ]";
     cout << endl << ".:: Press any key to continue . . . ";
-    getch();
+    _getch();
 }
-void class_Password_functions::eraseLine(string line)
+void class_Password_functions::erase_line(string line)
 {
     size = line.size() - 1;
     cout << line;
-    getch(); // Press any key . . .
+    _getch(); // Press any key . . .
     while (size > -1)
     {
         sleep_for(microseconds(10000));
@@ -279,7 +284,7 @@ string class_Password_functions::password()
             if (i < 8)
             {
                 string line = "Password must be atleast longer than 8 characters. Press any key to continue . . .";
-                eraseLine(line);
+                erase_line(line);
             }
             else
                 break;
@@ -395,13 +400,13 @@ void class_Password_functions::generate_password(string check_password, int n)
     else
     {
         line = "Your password is weak . . .Hit Enter.";
-        eraseLine(line);
+        erase_line(line);
 
         line = "Your password is weak.";
         cout << '\n' << line << endl;
 
         line = "Suggested password. . . .Hit Enter";
-        eraseLine(line);
+        erase_line(line);
 
         line = "Suggested password.";
         cout << line << endl;
@@ -421,7 +426,7 @@ void class_Password_functions::generate_password(string check_password, int n)
 int main()
 {
     class_Password_functions password_class_object; // class_Password_functions Object
-    password_class_object.loadingData();   // Loading name text-animation effect
+    password_class_object.loading_data();   // Loading name text-animation effect
     password_class_object.password_instructions();
     system("cls");    // clear Screen()
     string user_name; // user-name
@@ -430,7 +435,7 @@ int main()
     fstream fout;
     fout.open("password.txt", ios::out | ios::app);
     
-    password_class_object.encryptData(); // Encrypt named text_animation_effect
+    password_class_object.encrypt_data(); // Encrypt named text_animation_effect
     
     // Taking user-name and password from the user and Encrypting the password
     cout << "User-name: ";
@@ -449,8 +454,8 @@ int main()
 
     if (ch == 'Y' || ch == 'y')
     {
-        password_class_object.batteryStatus(); // batteryStatus()
-        password_class_object.decryptData(); // decryption animation_text_effect
+        password_class_object.battery_status(); // battery_status()
+        password_class_object.decrypt_data(); // decryption animation_text_effect
         password_class_object.hacker_text_animation(); // hacker_text animation_effect
         password_class_object.text_appearing_effect(user_password); // cool_text_type_writter_effect
 
